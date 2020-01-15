@@ -5,12 +5,33 @@
  * Full Stack Software Development
  * http://www.klow.greenriverdev.com/328/chicken/index.php
  */
+
+// Session
+session_start();
+
 // turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+// Template variables
 $title = "Chicken";
 $jumbotron = "index.php";
-$description = "Git workflow demo";
+$description = "Fat-free demo";
+
+// require the autoload file
+require_once('vendor/autoload.php');
+
+// create an instance of the base class
+$f3 = Base::instance();
+
+// define a default route
+$f3->route('GET /', function() {
+    $view = new Template();
+    $view->render('views/home.html');
+});
+
+// run fatfree
+$f3->run();
 ?>
 
 <!DOCTYPE html>
